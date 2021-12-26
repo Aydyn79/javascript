@@ -1,0 +1,7 @@
+.norm{
+	font-weight:normal;
+}
+.alert{
+	border-color: red;
+	font-weight: bold;
+}
