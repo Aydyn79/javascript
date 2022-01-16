@@ -10,14 +10,25 @@ const cart_path = path.resolve(__dirname, './data/cart.json')
 const static_dir = path.resolve(__dirname, './public/')
 
 app.use(cors())
-
-
 app.use(express.static(static_dir))
 app.use(express.json())
 
+// var cors = require(cors());
+// app.use(cors());
+// app.options('*',cors());
+// var allowCrossDomain = function(req,res,next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   next();  
+// }
+// app.use(allowCrossDomain);
+
+
+
 app.get('/api/v1/showcase', (req, res) => {
   fs.readFile(catalog_path, 'utf-8', (err, data) => {
-    if (!err) {
+    if(!err) {
       res.send(data);
     } else {
       res.status(500).send(err)
@@ -27,7 +38,7 @@ app.get('/api/v1/showcase', (req, res) => {
 
 app.get('/api/v1/cart', (req, res) => {
   fs.readFile(cart_path, 'utf-8', (err, data) => {
-    if (!err) {
+    if(!err) {
       res.send(data);
     } else {
       res.status(500).send(err)
@@ -37,7 +48,7 @@ app.get('/api/v1/cart', (req, res) => {
 
 app.post('/api/v1/cart', (req, res) => {
   fs.readFile(cart_path, 'utf-8', (err, data) => {
-    if (!err) {
+    if(!err) {
       console.log(req.body)
       const cart = JSON.parse(data);
       cart.push(req.body);
