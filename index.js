@@ -67,9 +67,8 @@ app.delete('/api/v1/cart', (req, res) => {
     if(!err) {
       console.log(req.body)
       let cart = JSON.parse(data);
-	  const result = cart.filter(function(el){
-		return el.id.indexOf(id) > -1;});
-      delete cart[result];
+	  const index = cart.find( item => item.id == id);
+      cart.splice(index,1);
       fs.writeFile(cart_path, JSON.stringify(cart), 'utf-8', (err, data) => {
         res.sendStatus(201)
       })
